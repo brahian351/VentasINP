@@ -201,6 +201,7 @@ const Header = ({ setUser, User, children }) => {
       ) : (
         <div className="min-h-screen bg-gradient-to-br from-[#394F68] to-[#183B7E] p-10 flex flex-col justify-center items-center">
           no admin
+          {children}
         </div>
       )}
     </>
