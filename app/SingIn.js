@@ -17,36 +17,21 @@ const SingIn = ({ setUser, setModalCambiosPass }) => {
         },
       });
 
+      console.log(response);
+
       if (response?.status == 200) {
-        // localStorage.setItem("rol_nombre", response?.data?.user[0]?.rol_nombre);
-        // localStorage.setItem("usu_rol", response?.data?.user[0]?.rol);
-        // localStorage.setItem(
-        //   "menu",
-        //   JSON.stringify(response?.data?.Menu || [])
-        // );
-        // localStorage.setItem(
-        //   "DemasInfo",
-        //   JSON.stringify(response?.data?.DemasInfo || {})
-        // );
-        // localStorage.setItem(
-        //   "IdSubSede",
-        //   response?.data?.user[0]?.subsede || 0
-        // );
-        // if (
-        //   InputValues?.Usuario === InputValues?.Pass ||
-        //   response?.data?.user[0]?.ChangePass === 0
-        // ) {
-        //   setModalCambiosPass(true);
-        // }
-        // setUser({
-        //   rol_nombre: response?.data?.user[0]?.rol_nombre,
-        //   usu_rol: response?.data?.user[0]?.rol,
-        //   Notification: response?.data?.Notificaciones,
-        // });
+        localStorage.setItem(
+          "InfoUsuario",
+          JSON.stringify(response?.data?.body || {})
+        );
+
+        setUser({
+          ...response?.data.body,
+        });
       }
     } catch (error) {
       console.log(error);
-      alert("Usuario o contraseña incorrectos");
+      alert(error?.response?.data?.body || "");
     }
   };
   return (
