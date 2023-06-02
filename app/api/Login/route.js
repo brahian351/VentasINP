@@ -8,7 +8,6 @@ export async function GET(req) {
     const Pass = searchParams?.get("Pass");
 
     if (!Usuario?.length || !Pass?.length) {
-      console.log("entro");
       return NextResponse.json(
         { body: "Usiario o Contraseña vacios" },
         { status: 401 }
