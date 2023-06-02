@@ -1,12 +1,11 @@
 import connectionPool from "@/config/db";
 import { NextResponse } from "next/server";
 
-export async function GET(req) {
-  const { searchParams } = new URL(req.url);
-
+export async function GET() {
   try {
-    const [proyectos] = await connectionPool.query(`SELECT * FROM clientes`);
+    const [proyectos] = await connectionPool.query(`SELECT * FROM Proyectos`);
 
+    console.log("proyectos");
     return NextResponse.json(
       { proyectos: proyectos || [] },
       {

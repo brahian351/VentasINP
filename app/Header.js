@@ -26,9 +26,9 @@ const Header = ({ setUser, User, children }) => {
   return (
     <>
       {Session.tipo == 1 ? (
-        <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
-          <div className="border-r-2 border-r-white fixed flex flex-col top-0 left-0 w-14 hover:w-64 md:w-64 bg-[#070e54] dark:bg-gray-900 h-full text-white transition-all duration-300 z-10 sidebar">
-            <div className="border-r-2 border-r-white flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-24 bg-[#070e54] dark:bg-gray-800">
+        <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white  text-black ">
+          <div className="border-r-2 border-r-white fixed flex flex-col top-0 left-0 w-14 hover:w-64 md:w-64 bg-[#070e54]  h-full text-white transition-all duration-300 z-10 sidebar">
+            <div className="border-r-2 border-r-white flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-24 bg-[#070e54] ">
               <span className="w-8 my-2 h-8 md:w-16 md:h-16 mr-2 rounded-md cursor-pointer overflow-hidden">
                 <Link href="/">
                   <Image
@@ -52,7 +52,7 @@ const Header = ({ setUser, User, children }) => {
               <ul className="flex flex-col py-4 space-y-1">
                 <li>
                   <Link href={`/Proyectos`}>
-                    <div className=" cursor-pointer flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
+                    <div className=" cursor-pointer flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                       <span className="inline-flex justify-center items-center ml-4">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ const Header = ({ setUser, User, children }) => {
                   <Link
                     href={`/Seguridad/EditUser/${Session?.DemasInfo?.Documento}/${Session?.DemasInfo?.Id}/${Session?.DemasInfo?.RolTipo}`}
                   >
-                    <div className=" cursor-pointer flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
+                    <div className=" cursor-pointer flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                       <span className="inline-flex justify-center items-center ml-4">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +111,7 @@ const Header = ({ setUser, User, children }) => {
                       localStorage?.clear();
                       router.replace("/");
                     }}
-                    className=" cursor-pointer flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6"
+                    className=" cursor-pointer flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6"
                   >
                     <span className="inline-flex justify-center items-center ml-4">
                       <svg

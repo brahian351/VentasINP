@@ -1,16 +1,10 @@
-import getBasePatch from "@/lib/getBasePath";
-import TitleButton from "../TitleButton";
+import BodyComponent from "./BodyComponent";
 
-export const revalidate = 60;
-
-const Proyectos = async () => {
-  const res = await fetch(`${getBasePatch()}/api/Proyectos/getProyectos`);
-  const data = await res.json();
-  console.log("data", data);
+const Proyectos = () => {
   return (
-    <div>
-      <TitleButton title="Proyectos" />
-    </div>
+    <>
+      <BodyComponent />
+    </>
   );
 };
 

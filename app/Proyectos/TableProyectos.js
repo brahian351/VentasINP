@@ -1,17 +1,9 @@
 "use client";
 import DataTable from "react-data-table-component";
-import { Administrativo, VisibilidadModal } from "../../../typings";
-import { customStyles } from "../../../utils/CustomStylesTables";
 import React from "react";
-import Image from "next/image";
+import { customStyles } from "@/lib/CustomStylesTables";
 
-const TableAdministrativos = ({
-  info,
-  setShowModal,
-  setAdministrativos,
-  setInfoEditar,
-  setShowImage,
-}) => {
+const TableProyectos = ({ info, setInfoModal }) => {
   const columns = [
     {
       name: "Id",
@@ -33,7 +25,6 @@ const TableAdministrativos = ({
       selector: (row) => row.description,
       sortable: true,
       wrap: true,
-      maxWidth: "150px",
     },
 
     {
@@ -50,14 +41,14 @@ const TableAdministrativos = ({
                 // fecha de eliminación
                 try {
                   const responseRemove = await fetch(
-                    "/api/Configuracion/Administrativos/DeleteAdmin",
+                    "/api/Proyectos/DeleteProyecto",
                     {
                       method: "DELETE",
                       headers: {
                         "Content-Type": "application/json",
                       },
                       body: JSON.stringify({
-                        id: row.Id,
+                        id: row.id,
                       }),
                     }
                   ).then((res) => res.json());
@@ -97,10 +88,9 @@ const TableAdministrativos = ({
             onClick={(e) => {
               e.preventDefault();
 
-              setInfoEditar(row);
-              setShowModal({
-                AddVisible: false,
-                EditVisible: true,
+              setInfoModal({
+                visible: true,
+                InfoEditar: { row },
               });
             }}
           >
@@ -137,14 +127,14 @@ const TableAdministrativos = ({
     <>
       <div className="border-t-2 border-t-white">
         <DataTable
-          title="Lista de Colaboradores"
+          title="Lista de Proyectos"
           columns={columns}
           paginationComponentOptions={paginationComponentOptions}
           data={info}
           persistTableHead
           pagination
           responsive
-          noDataComponent="No hay Colaboradores"
+          noDataComponent="No hay Proyectos agragados"
           customStyles={customStyles}
           paginationPerPage={7}
         />
@@ -153,4 +143,4 @@ const TableAdministrativos = ({
   );
 };
 
-export default TableAdministrativos;
+export default TableProyectos;

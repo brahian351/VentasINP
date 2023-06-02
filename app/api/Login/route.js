@@ -2,8 +2,8 @@ import connectionPool from "@/config/db";
 import { NextResponse } from "next/server";
 
 export async function GET(req) {
+  const { searchParams } = new URL(req.url);
   try {
-    const { searchParams } = new URL(req.url);
     const Usuario = searchParams?.get("Usuario");
     const Pass = searchParams?.get("Pass");
 
