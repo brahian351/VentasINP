@@ -14,6 +14,7 @@ export async function GET(req) {
         const proyecto = searchParams?.get("proyecto");
         const fecha = new Date()
         const ahora = `${fecha.getFullYear()}-${fecha.getMonth() + 1 > 9 ? fecha.getMonth() + 1 : `0${fecha.getMonth() + 1}-${fecha.getDate() > 9 ? fecha.getDate() : `0${fecha.getDate()}`}`}`
+
         const [cliente] = await connectionPool.query(
             `SELECT * FROM clientes WHERE dni = ${Identificacion}`
         );
