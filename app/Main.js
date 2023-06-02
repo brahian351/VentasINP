@@ -14,7 +14,17 @@ const Main = ({ children }) => {
   }, [User]);
   return (
     <body>
-      {User && (
+      <>
+        <Header
+          setUser={setUser}
+          User={User}
+          ModalCambiosPass={ModalCambiosPass}
+          setModalCambiosPass={setModalCambiosPass}
+        >
+          {children}
+        </Header>
+      </>
+      {/* {User && (
         <>
           <Header
             setUser={setUser}
@@ -29,7 +39,7 @@ const Main = ({ children }) => {
 
       {!User && (
         <SingIn setUser={setUser} setModalCambiosPass={setModalCambiosPass} />
-      )}
+      )} */}
     </body>
   );
 };
