@@ -18,8 +18,8 @@ const Modal = ({ InfoModal, setInfoModal, getData }) => {
         id: InfoModal?.InfoEditar?.id || null,
       });
 
-      getData();
       console.log("ResSendData", ResSendData);
+      getData();
 
       alert(ResSendData?.data?.body);
       setInfoModal({
