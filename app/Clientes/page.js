@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 
-function index() {
+function Index() {
     const [datos, setData] = useState({})
     const [proyectos, setProyecto] = useState([]);
     const changeData = (e) => {
@@ -217,4 +217,4 @@ function index() {
     )
 }
 
-export default index
+export default Index
