@@ -2,7 +2,6 @@ import connectionPool from "@/config/db";
 import { NextResponse } from "next/server";
 
 export async function GET(req) {
-<<<<<<< HEAD
   const { searchParams } = new URL(req.url);
   try {
     const Nombre = searchParams?.get("Nombre");
@@ -22,28 +21,9 @@ export async function GET(req) {
           }`
     }`;
     const [cliente] = await connectionPool.query(
-      `SELECT * FROM clientes WHERE dni = ${Identificacion}`
+      `SELECT * FROM clientes WHERE dni = '${Identificacion}'`
     );
     console.log("Este es el cliente ", cliente);
-=======
-    try {
-        const { searchParams } = new URL(req.url);
-        const Nombre = searchParams?.get("Nombre");
-        const Apellidos = searchParams?.get("Apellidos");
-        const Identificacion = searchParams?.get("Identificacion");
-        const Correo = searchParams?.get("Correo");
-        const Telefono = searchParams?.get("Telefono");
-        const Celular = searchParams?.get("Celular");
-        const Direccion = searchParams?.get("Direccion");
-        const proyecto = searchParams?.get("proyecto");
-        const fecha = new Date()
-        const ahora = `${fecha.getFullYear()}-${fecha.getMonth() + 1 > 9 ? fecha.getMonth() + 1 : `0${fecha.getMonth() + 1}-${fecha.getDate() > 9 ? fecha.getDate() : `0${fecha.getDate()}`}`}`
-
-        const [cliente] = await connectionPool.query(
-            `SELECT * FROM clientes WHERE dni = ${Identificacion}`
-        );
-        console.log("Este es el cliente ", cliente)
->>>>>>> 1ebae5c58e7f033d4b9949ffb9af0d5b918a804f
 
     if (!cliente.length) {
       await connectionPool.query(

@@ -1,19 +1,18 @@
 import connectionPool from "@/config/db";
 import { NextResponse } from "next/server";
 
-export async function DELETE(req) {
+export async function POST(request) {
   try {
-    // const { TipoModulo, ModuloPrincipal, Nombre, NombreModuloPrincipal } =
-    //   await req?.json();
+    const { id } = await request.json();
 
-    const { id } = await req?.json();
-
-    const [AdministrativoDelete] = await connectionPool.query(`
-    DELETE FROM admco WHERE id = ${id}
+    console.log("id", id);
+    console.log(`DELETE FROM Proyectos WHERE id = ${id}`);
+    const [Proyectos] = await connectionPool.query(`
+    DELETE FROM Proyectos WHERE id = '${id}'
     `);
-    if (AdministrativoDelete.affectedRows === 0) {
+    if (Proyectos.affectedRows == 0) {
       return NextResponse.json(
-        { body: "El proyecto se eliminó con éxito" },
+        { body: "El proyecto no se pudo eliminar" },
         {
           status: 400,
         }

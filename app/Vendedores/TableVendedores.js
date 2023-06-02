@@ -3,7 +3,7 @@ import DataTable from "react-data-table-component";
 import React from "react";
 import { customStyles } from "@/lib/CustomStylesTables";
 
-const TableProyectos = ({ info, setInfoModal, setProyectos }) => {
+const TableVendedores = ({ info, setInfoModal, setProyectos }) => {
   const columns = [
     {
       name: "Id",
@@ -144,4 +144,4 @@ const TableProyectos = ({ info, setInfoModal, setProyectos }) => {
   );
 };
 
-export default TableProyectos;
+export default TableVendedores;

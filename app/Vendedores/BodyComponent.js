@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import TableProyectos from "./TableProyectos";
 import TitleButton from "../TitleButton";
 import Modal from "./Modal";
 import Loading from "../loading";
+import TableProyectos from "../Proyectos/TableProyectos";
 
 const BodyComponent = () => {
   const [Proyectos, setProyectos] = useState([]);

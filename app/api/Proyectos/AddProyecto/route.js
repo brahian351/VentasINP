@@ -7,11 +7,11 @@ export async function POST(req) {
     if (id) {
       console.log("voy a editar");
       const [proyectos] = await connectionPool.query(
-        `UPDATE  Proyectos set nombre=${nombre}, descripcion=${descripcion} WHERE id=${id}`
+        `UPDATE  Proyectos set nombre='${nombre}', description='${descripcion}' WHERE id='${id}'`
       );
 
       return NextResponse.json(
-        { body: "Usuario editado con éxito" },
+        { body: "Proyecto editado con éxito" },
         {
           status: 200,
         }
@@ -22,7 +22,7 @@ export async function POST(req) {
     );
 
     return NextResponse.json(
-      { body: "usuario agregado con éxito" },
+      { body: "Proyecto agregado con éxito" },
       {
         status: 200,
       }
