@@ -7,39 +7,34 @@ const Main = ({ children }) => {
   const [User, setUser] = useState(null);
   const [ModalCambiosPass, setModalCambiosPass] = useState(false);
 
+  console.log("User", User);
+
   useEffect(() => {
-    if (User || localStorage?.usu_rol) {
-      setUser(User || localStorage?.usu_rol);
+    if (User || localStorage?.InfoUsuario) {
+      setUser(User || JSON.parse(localStorage?.InfoUsuario));
     }
   }, [User]);
   return (
     <body>
       <>
-        <Header
-          setUser={setUser}
-          User={User}
-          ModalCambiosPass={ModalCambiosPass}
-          setModalCambiosPass={setModalCambiosPass}
-        >
-          {children}
-        </Header>
-      </>
-      {/* {User && (
-        <>
-          <Header
-            setUser={setUser}
-            User={User}
-            ModalCambiosPass={ModalCambiosPass}
-            setModalCambiosPass={setModalCambiosPass}
-          >
-            {children}
-          </Header>
-        </>
-      )}
+        {User && (
+          <>
+            <Header
+              setUser={setUser}
+              User={User}
+              ModalCambiosPass={ModalCambiosPass}
+              setModalCambiosPass={setModalCambiosPass}
+            >
+              {children}
+            </Header>
+          </>
+        )}
 
-      {!User && (
-        <SingIn setUser={setUser} setModalCambiosPass={setModalCambiosPass} />
-      )} */}
+        {!User && (
+          <SingIn setUser={setUser} setModalCambiosPass={setModalCambiosPass} />
+        )}
+      </>
+      {/*  */}
     </body>
   );
 };

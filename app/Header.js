@@ -5,33 +5,30 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const Header = ({ setUser, User, children }) => {
-  const [Session, setSession] = useState({});
+  const [Session, setSession] = useState(User);
   const [active, setActive] = useState(0);
-  const [ShowNotification, setShowNotification] = useState(
-    User?.Notification?.length > 0 ? true : false
-  );
-
-  console.log("Session", Session);
 
   const router = useRouter();
 
-  const GetInfoBase = () => {
-    if (localStorage?.InfoUsuario) {
-      setSession({
-        ...JSON.parse(localStorage?.InfoUsuario),
-      });
-    }
-  };
-  useEffect(() => {
-    GetInfoBase();
-  }, []);
+  console.log("Session", Session);
+
+  // const GetInfoBase = () => {
+  //   if (localStorage?.InfoUsuario.id) {
+  //     setSession({
+  //       ...JSON.parse(localStorage?.InfoUsuario),
+  //     });
+  //   }
+  // };
+  // useEffect(() => {
+  //   GetInfoBase();
+  // }, []);
 
   return (
     <>
-      {Session.tipo == 1 ? (
-        <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
-          <div className="border-r-2 border-r-white fixed flex flex-col top-0 left-0 w-14 hover:w-64 md:w-64 bg-[#070e54] dark:bg-gray-900 h-full text-white transition-all duration-300 z-10 sidebar">
-            <div className="border-r-2 border-r-white flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-24 bg-[#070e54] dark:bg-gray-800">
+      {Session?.tipo == 1 ? (
+        <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white  text-black ">
+          <div className="border-r-2 border-r-white fixed flex flex-col top-0 left-0 w-14 hover:w-64 md:w-64 bg-[#070e54]  h-full text-white transition-all duration-300 z-10 sidebar">
+            <div className="border-r-2 border-r-white flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-24 bg-[#070e54] ">
               <span className="w-8 my-2 h-8 md:w-16 md:h-16 mr-2 rounded-md cursor-pointer overflow-hidden">
                 <Link href="/">
                   <Image
@@ -44,95 +41,91 @@ const Header = ({ setUser, User, children }) => {
                 </Link>
               </span>
               <p className="hidden md:block md:break-normal	">
-                {Session?.DemasInfo?.Nombre
-                  ? `${Session?.DemasInfo?.Nombre || ""} ${
-                      Session?.DemasInfo?.Apellidos || ""
-                    }`
-                  : Session?.rol_nombre}
+                {Session?.nombre || ""} {Session?.apellidos || ""}
               </p>
             </div>
             <div className="scrollbar-hide overflow-x-hidden flex flex-col justify-between flex-grow">
               <ul className="flex flex-col py-4 space-y-1">
-                {Session?.menu?.map((item, key) => (
-                  <li key={key}>
-                    <div className="px-5 hidden md:block">
-                      <div className="flex flex-row items-center h-8">
-                        <div className="text-sm font-bold tracking-wide text-yellow-500 uppercase">
-                          {item?.NombreModulo}
-                        </div>
-                      </div>
-                    </div>
-                    <ul>
-                      {item?.SubModulos?.map((subItem) => (
-                        <li className="cursor-pointer" key={subItem.id}>
-                          <Link
-                            href={`${subItem?.Link}?SubSede=${
-                              Session?.IdSubSede
-                            }&IdRol=${Session?.usu_rol}&IdUser=${
-                              Session?.DemasInfo?.Id
-                            }&Doc=${Session?.DemasInfo?.Documento || 0}`}
-                            onClick={() => {
-                              setActive(subItem?.id);
-                            }}
-                          >
-                            <div
-                              className={`relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6 ${
-                                active == subItem.id &&
-                                "bg-blue-800 border-blue-500 font-bold scale-105 "
-                              }`}
-                            >
-                              <span className="inline-flex justify-center items-center ml-4">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  strokeWidth={1.5}
-                                  stroke="currentColor"
-                                  className="w-6 h-6"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
-                                  />
-                                </svg>{" "}
-                              </span>
-                              <span className="ml-2 text-sm leading-[1] ">
-                                {subItem?.SubModulo}
-                              </span>
-                            </div>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                ))}
                 <li>
-                  <Link href="/MapaRectorias">
-                    <div className="cursor-pointer flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
+                  <Link href={`/Proyectos`}>
+                    <div className=" cursor-pointer flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                       <span className="inline-flex justify-center items-center ml-4">
                         <svg
+                          xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
                           strokeWidth={1.5}
                           stroke="currentColor"
                           className="w-6 h-6"
-                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <path d="M2.672 23.969c-.352-.089-.534-.234-1.471-1.168C.085 21.688.014 21.579.018 20.999c0-.645-.196-.414 3.368-3.986 3.6-3.608 3.415-3.451 4.064-3.449.302 0 .378.016.62.14l.277.14 1.744-1.744-.218-.343c-.425-.662-.825-1.629-1.006-2.429a7.657 7.657 0 0 1 1.479-6.44c2.49-3.12 6.959-3.812 10.26-1.588 1.812 1.218 2.99 3.099 3.328 5.314.07.467.07 1.579 0 2.074a7.554 7.554 0 0 1-2.205 4.402 6.712 6.712 0 0 1-1.943 1.401c-.959.483-1.775.71-2.881.803-1.573.131-3.32-.305-4.656-1.163l-.343-.218-1.744 1.744.14.28c.125.241.14.316.14.617.003.651.156.467-3.426 4.049-2.761 2.756-3.186 3.164-3.398 3.261-.271.125-.69.171-.945.106zM17.485 13.95a6.425 6.425 0 0 0 4.603-3.51c1.391-2.899.455-6.306-2.227-8.108-.638-.43-1.529-.794-2.367-.962-.581-.117-1.809-.104-2.414.025a6.593 6.593 0 0 0-2.452 1.064c-.444.315-1.177 1.048-1.487 1.487a6.384 6.384 0 0 0 .38 7.907 6.406 6.406 0 0 0 3.901 2.136c.509.078 1.542.058 2.065-.037zm-3.738 7.376a80.97 80.97 0 0 1-2.196-.651c-.025-.028 1.207-4.396 1.257-4.449.023-.026 4.242 1.152 4.414 1.236.062.026-.003.288-.525 2.102a398.513 398.513 0 0 0-.635 2.236c-.025.087-.069.156-.097.156-.028-.003-1.028-.287-2.219-.631zm2.912.524c0-.053 1.227-4.333 1.246-4.347.047-.034 4.324-1.23 4.341-1.211.019.019-1.199 4.337-1.23 4.36-.02.019-4.126 1.191-4.259 1.218-.054.011-.098 0-.098-.019zm-7.105-1.911c.846-.852 1.599-1.627 1.674-1.728.171-.218.405-.732.472-1.015.026-.118.053-.352.058-.522l.011-.307.182-.051c.103-.028.193-.044.202-.034.023.025-1.207 4.321-1.246 4.36-.02.016-.677.213-1.464.436l-1.425.405 1.537-1.542zm8.289-3.06a1.371 1.371 0 0 1-.059-.187l-.044-.156.156-.028c1.339-.227 2.776-.856 3.908-1.713.16-.125.252-.171.265-.134.054.165.272.95.265.959-.034.034-4.48 1.282-4.492 1.261zm-15.083-1.3c-.05-.039-1.179-3.866-1.264-4.29-.016-.084.146-.044 2.174.536 2.121.604 2.192.629 2.222.74.028.098.011.129-.125.223-.084.059-.769.724-1.523 1.479a63.877 63.877 0 0 1-1.39 1.367c-.016 0-.056-.025-.093-.054zm.821-4.378c-1.188-.343-2.164-.623-2.167-.626-.016-.012 1.261-4.433 1.285-4.46.022-.022 4.422 1.211 4.469 1.252.009.009-.269 1.017-.618 2.239-.576 2.02-.643 2.224-.723 2.22-.05-.003-1.059-.285-2.247-.626zm2.959.538c.012-.031.212-.723.444-1.534l.42-1.476.056.321c.093.556.265 1.188.464 1.741.106.296.187.539.181.545-.008.006-.332.101-.719.212-.389.109-.741.21-.786.224-.058.016-.075.006-.059-.034zM4.905 6.112c-1.187-.339-2.167-.635-2.18-.654-.04-.062-1.246-4.321-1.23-4.338.026-.025 4.31 1.204 4.351 1.246.047.051 1.28 4.379 1.246 4.376L4.91 6.113zm2.148-1.713l-.519-1.806-.078-.28 1.693-.483c.934-.265 1.724-.495 1.76-.508.034-.016-.083.14-.26.336A8.729 8.729 0 0 0 7.69 5.23a4.348 4.348 0 0 0-.132.561c0 .293-.115-.025-.505-1.39z"></path>
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0112 18.375m9.75-12.75c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125m19.5 0v1.5c0 .621-.504 1.125-1.125 1.125M2.25 5.625v1.5c0 .621.504 1.125 1.125 1.125m0 0h17.25m-17.25 0h7.5c.621 0 1.125.504 1.125 1.125M3.375 8.25c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m17.25-3.75h-7.5c-.621 0-1.125.504-1.125 1.125m8.625-1.125c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M12 10.875v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125M13.125 12h7.5m-7.5 0c-.621 0-1.125.504-1.125 1.125M20.625 12c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5M12 14.625v-1.5m0 1.5c0 .621-.504 1.125-1.125 1.125M12 14.625c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m0 1.5v-1.5m0 0c0-.621.504-1.125 1.125-1.125m0 0h7.5"
+                          />
                         </svg>
                       </span>
                       <span className="ml-2 text-sm tracking-wide truncate">
-                        Mapa UNIMINUTO
+                        Proyectos
                       </span>
                     </div>
                   </Link>
                 </li>
                 <li>
+                  <Link href={`/Vendedores`}>
+                    <div className=" cursor-pointer flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
+                      <span className="inline-flex justify-center items-center ml-4">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-6 h-6"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                          />
+                        </svg>
+                      </span>
+                      <span className="ml-2 text-sm tracking-wide truncate">
+                        Vendedores
+                      </span>
+                    </div>
+                  </Link>
+                </li>
+                <li>
+                  <Link href={`/Clientes`}>
+                    <div className=" cursor-pointer flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
+                      <span className="inline-flex justify-center items-center ml-4">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-6 h-6"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                          />
+                        </svg>
+                      </span>
+                      <span className="ml-2 text-sm tracking-wide truncate">
+                        Clientes
+                      </span>
+                    </div>
+                  </Link>
+                </li>
+                {/* <li>
                   <Link
                     href={`/Seguridad/EditUser/${Session?.DemasInfo?.Documento}/${Session?.DemasInfo?.Id}/${Session?.DemasInfo?.RolTipo}`}
                   >
-                    <div className=" cursor-pointer flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
+                    <div className=" cursor-pointer flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6">
                       <span className="inline-flex justify-center items-center ml-4">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -154,7 +147,7 @@ const Header = ({ setUser, User, children }) => {
                       </span>
                     </div>
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <div
                     onClick={(e) => {
@@ -164,7 +157,7 @@ const Header = ({ setUser, User, children }) => {
                       localStorage?.clear();
                       router.replace("/");
                     }}
-                    className=" cursor-pointer flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6"
+                    className=" cursor-pointer flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800  text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500  pr-6"
                   >
                     <span className="inline-flex justify-center items-center ml-4">
                       <svg
