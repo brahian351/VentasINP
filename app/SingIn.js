@@ -50,8 +50,8 @@ const SingIn = ({ setUser, setModalCambiosPass }) => {
               </h2>
               <p className="max-w-xl mt-3 text-white font-bold">
                 Es un placer tenerte aquí. Nuestra aplicación está diseñada para
-                facilitar tus tareas contables de manera eficiente. Te ayudará a
-                llevar un registro preciso de tus ingresos, gastos y facturas.
+                facilitar tus tareas en la administración de clientes de manera
+                eficiente.
               </p>
             </div>
           </div>
