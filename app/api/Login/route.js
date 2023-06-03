@@ -21,6 +21,10 @@ export async function GET(req) {
     if (user.length > 0) {
       return NextResponse.json({ body: user[0] || {} }, { status: 200 });
     }
+    return NextResponse.json(
+      { body: "Usuario o contraseña incorrectos" || "" },
+      { status: 401 }
+    );
   } catch (error) {
     console.log(error);
     return NextResponse.json(

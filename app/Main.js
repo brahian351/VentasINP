@@ -7,9 +7,11 @@ const Main = ({ children }) => {
   const [User, setUser] = useState(null);
   const [ModalCambiosPass, setModalCambiosPass] = useState(false);
 
+  console.log("User", User);
+
   useEffect(() => {
-    if (User || localStorage?.usu_rol) {
-      setUser(User || localStorage?.usu_rol);
+    if (User || localStorage?.InfoUsuario) {
+      setUser(User || JSON.parse(localStorage?.InfoUsuario));
     }
   }, [User]);
   return (

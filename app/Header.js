@@ -5,23 +5,23 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const Header = ({ setUser, User, children }) => {
-  const [Session, setSession] = useState({});
+  const [Session, setSession] = useState(User);
   const [active, setActive] = useState(0);
-
-  console.log("Session", Session);
 
   const router = useRouter();
 
-  const GetInfoBase = () => {
-    if (localStorage?.InfoUsuario) {
-      setSession({
-        ...JSON.parse(localStorage?.InfoUsuario),
-      });
-    }
-  };
-  useEffect(() => {
-    GetInfoBase();
-  }, []);
+  console.log("Session", Session);
+
+  // const GetInfoBase = () => {
+  //   if (localStorage?.InfoUsuario.id) {
+  //     setSession({
+  //       ...JSON.parse(localStorage?.InfoUsuario),
+  //     });
+  //   }
+  // };
+  // useEffect(() => {
+  //   GetInfoBase();
+  // }, []);
 
   return (
     <>
