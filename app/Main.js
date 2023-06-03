@@ -15,31 +15,24 @@ const Main = ({ children }) => {
   return (
     <body>
       <>
-        <Header
-          setUser={setUser}
-          User={User}
-          ModalCambiosPass={ModalCambiosPass}
-          setModalCambiosPass={setModalCambiosPass}
-        >
-          {children}
-        </Header>
-      </>
-      {/* {User && (
-        <>
-          <Header
-            setUser={setUser}
-            User={User}
-            ModalCambiosPass={ModalCambiosPass}
-            setModalCambiosPass={setModalCambiosPass}
-          >
-            {children}
-          </Header>
-        </>
-      )}
+        {User && (
+          <>
+            <Header
+              setUser={setUser}
+              User={User}
+              ModalCambiosPass={ModalCambiosPass}
+              setModalCambiosPass={setModalCambiosPass}
+            >
+              {children}
+            </Header>
+          </>
+        )}
 
-      {!User && (
-        <SingIn setUser={setUser} setModalCambiosPass={setModalCambiosPass} />
-      )} */}
+        {!User && (
+          <SingIn setUser={setUser} setModalCambiosPass={setModalCambiosPass} />
+        )}
+      </>
+      {/*  */}
     </body>
   );
 };

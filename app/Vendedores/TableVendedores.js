@@ -1,9 +1,23 @@
 "use client";
 import DataTable from "react-data-table-component";
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { customStyles } from "@/lib/CustomStylesTables";
 
 const TableVendedores = ({ info, setInfoModal, setProyectos }) => {
+  const [filterText, setFilterText] = useState("");
+
+  const filteredItems = info?.filter((item) => {
+    let nombre = `${item?.nombre?.toLowerCase()} ${item?.apellido?.toLowerCase()}`;
+
+    return (
+      nombre &&
+      nombre
+        .toString()
+        .replace(/\s+/g, " ")
+        .toLowerCase()
+        .includes(filterText.toLowerCase())
+    );
+  });
   const columns = [
     {
       name: "Id",
@@ -13,20 +27,36 @@ const TableVendedores = ({ info, setInfoModal, setProyectos }) => {
       maxWidth: "150px",
     },
     {
-      name: "Nombre del Proyecto",
+      name: "Nombre",
       selector: (row) => row.nombre,
       sortable: true,
       wrap: true,
-      grow: 2,
     },
 
     {
-      name: "Descripción",
-      selector: (row) => row.description,
+      name: "Apellidos",
+      selector: (row) => row.apellidos,
       sortable: true,
       wrap: true,
     },
-
+    {
+      name: "Celular",
+      selector: (row) => row.celular,
+      sortable: true,
+      wrap: true,
+    },
+    {
+      name: "Correo",
+      selector: (row) => row.correo,
+      sortable: true,
+      wrap: true,
+    },
+    {
+      name: "Dirección",
+      selector: (row) => row.direccion,
+      sortable: true,
+      wrap: true,
+    },
     {
       name: "Operaciones",
       selector: (row) => (
@@ -35,14 +65,14 @@ const TableVendedores = ({ info, setInfoModal, setProyectos }) => {
             title="Eliminar Registro"
             onClick={async () => {
               const validate = confirm(
-                "¿Está seguro de eliminar este proyecto?"
+                "¿Está seguro de eliminar este vendedor?"
               );
               if (validate) {
                 // fecha de eliminación
                 try {
                   console.log(row.id);
                   const responseRemove = await fetch(
-                    "/api/Proyectos/DeleteProyecto",
+                    "/api/Vendedores/DeleteVendedor",
                     {
                       method: "POST",
                       headers: {
@@ -124,18 +154,33 @@ const TableVendedores = ({ info, setInfoModal, setProyectos }) => {
     selectAllRowsItemText: "Todos",
   };
 
+  const subHeaderComponentMemo = useMemo(() => {
+    return (
+      <input
+        onChange={(e) => setFilterText(e.target.value)}
+        // onClear={handleClear}
+        value={filterText}
+        autoComplete="off"
+        placeholder="Buscar por Nombres y Apellidos o Documento"
+        className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+      />
+    );
+  }, [filterText]);
+
   return (
     <>
       <div className="border-t-2 border-t-white">
         <DataTable
-          title="Lista de Proyectos"
+          title="Lista de Clientes"
           columns={columns}
           paginationComponentOptions={paginationComponentOptions}
-          data={info}
-          persistTableHead
+          data={filteredItems}
           pagination
+          persistTableHead
+          subHeader
+          subHeaderComponent={subHeaderComponentMemo}
           responsive
-          noDataComponent="No hay Proyectos agragados"
+          noDataComponent="No hay vendedores registrados"
           customStyles={customStyles}
           paginationPerPage={7}
         />

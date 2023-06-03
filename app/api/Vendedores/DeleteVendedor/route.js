@@ -5,14 +5,12 @@ export async function POST(request) {
   try {
     const { id } = await request.json();
 
-    console.log("id", id);
-    console.log(`DELETE FROM Proyectos WHERE id = ${id}`);
     const [Proyectos] = await connectionPool.query(`
-    DELETE FROM Proyectos WHERE id = '${id}'
+    DELETE FROM Vendedores WHERE id = '${id}'
     `);
     if (Proyectos.affectedRows == 0) {
       return NextResponse.json(
-        { body: "El proyecto no se pudo eliminar" },
+        { body: "El Vendedor no se pudo eliminar" },
         {
           status: 400,
         }
@@ -20,7 +18,7 @@ export async function POST(request) {
     }
 
     return NextResponse.json(
-      { body: "El proyecto se eliminó con éxito" },
+      { body: "El Vendedor se eliminó con éxito" },
       {
         status: 200,
       }

@@ -89,7 +89,7 @@ const Modal = ({ InfoModal, setInfoModal, getData }) => {
                   className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   defaultValue={InfoModal.InfoEditar?.description}
                   // validar en el input de tipo text que tenga una longitud maxima de 4 caracteres y solo letras
-                  title="Solo se permiten letras y una longitud maxima de 4 caracteres"
+                  // title="Solo se permiten letras y una longitud maxima de 4 caracteres"
                 />
               </div>
             </div>

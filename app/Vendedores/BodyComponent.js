@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import TitleButton from "../TitleButton";
-import Modal from "./Modal";
 import Loading from "../loading";
-import TableProyectos from "../Proyectos/TableProyectos";
+import TableVendedores from "./TableVendedores";
+import ModalVendedor from "./ModalVendedor";
 
 const BodyComponent = () => {
   const [Proyectos, setProyectos] = useState([]);
@@ -14,7 +14,7 @@ const BodyComponent = () => {
   });
   const getData = async () => {
     setLoadingData(true);
-    const res = await fetch(`/api/Proyectos/getProyectos`);
+    const res = await fetch(`/api/Vendedores/getVendedores`);
     const data = await res.json();
 
     setProyectos(data?.proyectos || []);
@@ -28,7 +28,7 @@ const BodyComponent = () => {
   return (
     <div>
       {InfoModal.visible && (
-        <Modal
+        <ModalVendedor
           InfoModal={InfoModal}
           setInfoModal={setInfoModal}
           getData={getData}
@@ -61,7 +61,7 @@ const BodyComponent = () => {
               />
             </svg>
 
-            <span>Agregar proyecto</span>
+            <span>Agregar Vendedor</span>
           </button>
         </div>
       </TitleButton>
@@ -69,7 +69,7 @@ const BodyComponent = () => {
       {LoadingData ? (
         <Loading />
       ) : (
-        <TableProyectos
+        <TableVendedores
           info={Proyectos}
           setInfoModal={setInfoModal}
           setProyectos={setProyectos}

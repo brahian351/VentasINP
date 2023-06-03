@@ -1,19 +1,20 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-const Modal = ({ InfoModal, setInfoModal, getData }) => {
+const ModalVendedor = ({ InfoModal, setInfoModal, getData }) => {
   const [InputValues, setInputValues] = useState({
     nombre: InfoModal?.InfoEditar?.nombre || "",
-    descripcion: InfoModal?.InfoEditar?.descripcion || "",
+    apellidos: InfoModal?.InfoEditar?.apellidos || "",
+    celular: InfoModal?.InfoEditar?.celular || "",
+    correo: InfoModal?.InfoEditar?.correo || "",
+    direccion: InfoModal?.InfoEditar?.direccion || "",
   });
-
-  console.log("InfoModal", InfoModal);
 
   const handerSubmit = async (e) => {
     try {
       e.preventDefault();
 
-      const ResSendData = await axios.post("/api/Proyectos/AddProyecto", {
+      const ResSendData = await axios.post("/api/Vendedores/AddVendedor", {
         ...InputValues,
         id: InfoModal?.InfoEditar?.id || null,
       });
@@ -45,8 +46,8 @@ const Modal = ({ InfoModal, setInfoModal, getData }) => {
         <div className="relative overflow-auto  max-h-screen  py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
           <h1 className="text-center text-lg tracking-normal leading-tight mb-4 bg-[#151A8B] w-full text-white p-4 rounded-lg font-bold ">
             {Object.keys(InfoModal?.InfoEditar).length > 0
-              ? `Editar ${InfoModal.InfoEditar?.nombre}`
-              : "Agregar un proyecto"}
+              ? `Editar ${InfoModal.InfoEditar?.nombre} ${InfoModal.InfoEditar?.apellidos}`
+              : "Agregar un vendedor"}
           </h1>
 
           <form onSubmit={handerSubmit}>
@@ -56,7 +57,7 @@ const Modal = ({ InfoModal, setInfoModal, getData }) => {
                   htmlFor="nombre"
                   className="mb-3 block text-base font-medium text-gray-800"
                 >
-                  Nombre proyecto <span className="text-red-900">(*)</span>
+                  Nombre <span className="text-red-900">(*)</span>
                 </label>
                 <input
                   autoComplete="off"
@@ -73,27 +74,89 @@ const Modal = ({ InfoModal, setInfoModal, getData }) => {
               </div>
               <div className="mb-2">
                 <label
-                  htmlFor="descripcion"
+                  htmlFor="apellidos"
                   className="mb-3 block text-base font-medium text-gray-800"
                 >
-                  Descripción
+                  Apellidos <span className="text-red-900">(*)</span>
                 </label>
-                <textarea
+                <input
                   autoComplete="off"
-                  rows="4"
                   type="text"
-                  name="descripcion"
-                  id="descripcion"
+                  name="apellidos"
+                  id="apellidos"
                   onChange={hanlerChange}
-                  placeholder="Ingrese Descriptión"
-                  className="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                  defaultValue={InfoModal.InfoEditar?.description}
+                  placeholder="Ingrese apellidos"
+                  className="InputStyle"
+                  defaultValue={InfoModal.InfoEditar?.apellidos}
                   // validar en el input de tipo text que tenga una longitud maxima de 4 caracteres y solo letras
                   title="Solo se permiten letras y una longitud maxima de 4 caracteres"
                 />
               </div>
             </div>
-
+            <div className="grid sm:grid-cols-2 gap-2">
+              <div className="mb-2">
+                <label
+                  htmlFor="celular"
+                  className="mb-3 block text-base font-medium text-gray-800"
+                >
+                  Celular <span className="text-red-900">(*)</span>
+                </label>
+                <input
+                  autoComplete="off"
+                  autoFocus
+                  type="text"
+                  name="celular"
+                  id="celular"
+                  required
+                  onChange={hanlerChange}
+                  placeholder="Ingrese Celular"
+                  className="InputStyle"
+                  defaultValue={InfoModal.InfoEditar?.celular}
+                />
+              </div>
+              <div className="mb-2">
+                <label
+                  htmlFor="correo"
+                  className="mb-3 block text-base font-medium text-gray-800"
+                >
+                  Correo <span className="text-red-900">(*)</span>
+                </label>
+                <input
+                  autoComplete="off"
+                  type="email"
+                  name="correo"
+                  id="correo"
+                  onChange={hanlerChange}
+                  placeholder="Ingrese Correo"
+                  className="InputStyle"
+                  defaultValue={InfoModal.InfoEditar?.correo}
+                  // validar en el input de tipo text que tenga una longitud maxima de 4 caracteres y solo letras
+                  // title="Solo se permiten letras y una longitud maxima de 4 caracteres"
+                />
+              </div>
+            </div>
+            <div className="grid sm:grid-cols-1 gap-2">
+              <div className="mb-2">
+                <label
+                  htmlFor="direccion"
+                  className="mb-3 block text-base font-medium text-gray-800"
+                >
+                  Dirección
+                </label>
+                <textarea
+                  autoComplete="off"
+                  rows="4"
+                  type="text"
+                  name="direccion"
+                  id="direccion"
+                  onChange={hanlerChange}
+                  placeholder="Ingrese Dirección ..."
+                  className="InputStyle"
+                  defaultValue={InfoModal.InfoEditar?.direccion}
+                  // validar en el input de tipo text que tenga una longitud maxima de 4 caracteres y solo letras
+                />
+              </div>
+            </div>
             <div className="flex justify-around mt-3 gap-2">
               <button
                 type="submit"
@@ -123,4 +186,4 @@ const Modal = ({ InfoModal, setInfoModal, getData }) => {
   );
 };
 
-export default Modal;
+export default ModalVendedor;
