@@ -8,6 +8,8 @@ const ModalVendedor = ({ InfoModal, setInfoModal, getData }) => {
     celular: InfoModal?.InfoEditar?.celular || "",
     correo: InfoModal?.InfoEditar?.correo || "",
     direccion: InfoModal?.InfoEditar?.direccion || "",
+    nickname: InfoModal?.InfoEditar?.nickname || "",
+    password: InfoModal?.InfoEditar?.password || "",
   });
 
   const handerSubmit = async (e) => {
@@ -20,7 +22,6 @@ const ModalVendedor = ({ InfoModal, setInfoModal, getData }) => {
       });
 
       getData();
-      console.log("ResSendData", ResSendData);
 
       alert(ResSendData?.data?.body);
       setInfoModal({
@@ -29,7 +30,7 @@ const ModalVendedor = ({ InfoModal, setInfoModal, getData }) => {
       });
     } catch (error) {
       console.log(error);
-      alert(error?.data?.config?.body);
+      alert(error?.response?.data?.body);
     }
   };
 
@@ -67,7 +68,7 @@ const ModalVendedor = ({ InfoModal, setInfoModal, getData }) => {
                   id="nombre"
                   required
                   onChange={hanlerChange}
-                  placeholder="Ingrese Nombre del proyecto"
+                  placeholder="Ingrese el nombre"
                   className="InputStyle"
                   defaultValue={InfoModal.InfoEditar?.nombre}
                 />
@@ -103,7 +104,6 @@ const ModalVendedor = ({ InfoModal, setInfoModal, getData }) => {
                 </label>
                 <input
                   autoComplete="off"
-                  autoFocus
                   type="text"
                   name="celular"
                   id="celular"
@@ -135,6 +135,47 @@ const ModalVendedor = ({ InfoModal, setInfoModal, getData }) => {
                 />
               </div>
             </div>
+            <div className="grid sm:grid-cols-2 gap-2">
+              <div className="mb-2">
+                <label
+                  htmlFor="nickname"
+                  className="mb-3 block text-base font-medium text-gray-800"
+                >
+                  Usuario <span className="text-red-900">(*)</span>
+                </label>
+                <input
+                  autoComplete="off"
+                  type="text"
+                  name="nickname"
+                  id="nickname"
+                  required
+                  onChange={hanlerChange}
+                  placeholder="Ingrese el usuario"
+                  className="InputStyle"
+                  defaultValue={InfoModal.InfoEditar?.nickname}
+                />
+              </div>
+              <div className="mb-2">
+                <label
+                  htmlFor="password"
+                  className="mb-3 block text-base font-medium text-gray-800"
+                >
+                  Contraseña <span className="text-red-900">(*)</span>
+                </label>
+                <input
+                  autoComplete="off"
+                  type="text"
+                  name="password"
+                  id="password"
+                  onChange={hanlerChange}
+                  placeholder="Ingrese constraseña"
+                  className="InputStyle"
+                  defaultValue={InfoModal.InfoEditar?.password}
+                  // validar en el input de tipo text que tenga una longitud maxima de 4 caracteres y solo letras
+                  // title="Solo se permiten letras y una longitud maxima de 4 caracteres"
+                />
+              </div>
+            </div>
             <div className="grid sm:grid-cols-1 gap-2">
               <div className="mb-2">
                 <label
@@ -157,6 +198,7 @@ const ModalVendedor = ({ InfoModal, setInfoModal, getData }) => {
                 />
               </div>
             </div>
+
             <div className="flex justify-around mt-3 gap-2">
               <button
                 type="submit"

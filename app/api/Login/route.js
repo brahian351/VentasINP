@@ -15,7 +15,7 @@ export async function GET(req) {
     }
 
     const [user] = await connectionPool.query(
-      `SELECT * FROM usuarios WHERE nickname = '${Usuario}' AND password = '${Pass}'`
+      `SELECT * FROM usuarios inner join Vendedores on (Vendedores.id=usuarios.idVendedor) WHERE nickname = '${Usuario}' AND password = '${Pass}'  `
     );
 
     if (user.length > 0) {

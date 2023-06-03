@@ -28,7 +28,7 @@ const Modal = ({ InfoModal, setInfoModal, getData }) => {
       });
     } catch (error) {
       console.log(error);
-      alert(error?.data?.config?.body);
+      alert(error?.response?.data?.body);
     }
   };
 
