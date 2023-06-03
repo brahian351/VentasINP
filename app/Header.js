@@ -25,7 +25,7 @@ const Header = ({ setUser, User, children }) => {
 
   return (
     <>
-      {Session.tipo == 1 ? (
+      {Session?.tipo == 1 ? (
         <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white  text-black ">
           <div className="border-r-2 border-r-white fixed flex flex-col top-0 left-0 w-14 hover:w-64 md:w-64 bg-[#070e54]  h-full text-white transition-all duration-300 z-10 sidebar">
             <div className="border-r-2 border-r-white flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-24 bg-[#070e54] ">

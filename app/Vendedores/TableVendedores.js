@@ -171,7 +171,7 @@ const TableVendedores = ({ info, setInfoModal, setProyectos }) => {
     <>
       <div className="border-t-2 border-t-white">
         <DataTable
-          title="Lista de Clientes"
+          title="Lista de Vendedores"
           columns={columns}
           paginationComponentOptions={paginationComponentOptions}
           data={filteredItems}

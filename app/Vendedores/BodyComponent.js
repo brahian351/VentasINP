@@ -34,7 +34,7 @@ const BodyComponent = () => {
           getData={getData}
         />
       )}
-      <TitleButton title="Proyectos">
+      <TitleButton title="Vendedores">
         <div>
           <button
             autoFocus
